@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment 2 - Website Building</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <style>
+            body {
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+
+            #login-container {
+                width: 460px;
+                margin: 0 auto;
+            }
+
+            form label,
+            form input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            form input {
+                padding: 8px;
+            }
+
+            form label {
+                font-weight: bold;
+            }
+
+            form div {
+                margin: 16px 0px;
+            }
+            .username_container > i {
+                display: none;
+                position: absolute;
+                margin-top: 8px;
+                margin-left: -26px;
+            }
+            .password_container > i {
+                display: none;
+                position: absolute;
+                margin-top: 8px;
+                margin-left: -26px;
+            }
+            .fa-check {
+                display: inline-block !important;
+                color: green;
+            }
+            .fa-times-circle {
+                display: inline-block !important;
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        
+        <div id="login-container">
+            <form id="mdea">
+                <div class="username_container">
+                    <label for="username">Username:</label>
+                    <input id="username" type="text" re>
+                    <i class="fas"></i>
+                </div>
+
+                <div class="password_container">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password">
+                    <i class="fas"></i>
+                </div>
+
+                <input type="submit" value="Login">
+            </form>
+            <ul class="error"></ul>
+
+        </div>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script>
+           $("#mdea").submit(function validate (e) {
+                e.preventDefault();
+                $("ul.error").empty();
+                
+                // Validate username
+                if($("#username").val() == "new_user") {
+                    $("#username").css('border-color', 'green');
+                    $(".username_container > i").removeClass("fa-times-circle").addClass("fa-check");
+                } else if($("#username").val() == "") {
+                    $("#username").css('border-color', 'red');
+                    $(".username_container > i").removeClass("fa-check").addClass("fa-times-circle");
+                    $("ul.error").append("<li>please, enter username</li>");
+                } else {
+                    $("#username").css('border-color', 'red');
+                    $(".username_container > i").removeClass("fa-check").addClass("fa-times-circle");
+                    $("ul.error").append("<li>please, enter a valid username</li>");
+                }
+
+                // Validate password
+                if($("#password").val() == "123456") {
+                    $("#password").css('border-color', 'green');
+                    $(".password_container > i").removeClass("fa-times-circle").addClass("fa-check");
+                } else if($("#password").val() == "") {
+                    $("#password").css('border-color', 'red');
+                    $(".password_container > i").removeClass("fa-check").addClass("fa-times-circle");
+                    $("ul.error").append("<li>please, enter password</li>");
+                } else {
+                    $("#password").css('border-color', 'red');
+                    $(".password_container > i").removeClass("fa-check").addClass("fa-times-circle");
+                    $("ul.error").append("<li>please enter a valid password</li>");
+                }
+
+                if(($("#username").val() == "new_user") & ($("#password").val() == "123456")){
+                    $("ul.error").append("<li>Successful login!</li>");
+                }
+            });
+        </script>
+    </body>
+</html>
